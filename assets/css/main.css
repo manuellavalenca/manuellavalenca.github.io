@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="your_domain/css/reset.css">
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic");
 
@@ -2455,7 +2456,7 @@ input, select, textarea {
 		line-height: 2.75em;
 		min-width: 10em;
 		padding: 0 1.5em;
-		margin-right: 0.4em;
+		margin-right: 0.5em;
 		margin-left: 0;
 		margin-bottom: 1em;
 		text-align: center;
