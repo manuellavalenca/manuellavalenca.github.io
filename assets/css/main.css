@@ -77,7 +77,6 @@ input, select, textarea {
 
 	html {
 		box-sizing: border-box;
-		scroll-behavior: smooth;
 	}
 
 	*, *:before, *:after {
