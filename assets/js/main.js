@@ -12,13 +12,14 @@ translator.load();
 function handleLanguageChoice(evt) {
     var input = evt.target;
 
-    if (input.tagName === "INPUT" && input.name === "lang") {
-      translator.load(input.value);
-	  console.log("Mudando o idioma");
-	  console.log(lang);
-      localStorage.setItem("language", input.value);
+    if (input.name === "lang") {
+      translator.load(input.id);
+	    console.log("Mudando o idioma para:");
+	    console.log(input.id);
+      localStorage.setItem("lang", input.id);
     }
   }
+
   document.querySelector('[data-action="language-button"]').addEventListener("click", handleLanguageChoice);
 
 // (function($) {

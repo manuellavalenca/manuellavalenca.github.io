@@ -21,9 +21,9 @@ class Translator {
         }
 
         fetch(`./i18n/${this._lang}.json`)
-            .then((res) => res.json())
+            .then((response) => response.json())
             .then((translation) => {
-                this.translate(translation);
+                this.translate(translation);           
             })
             .catch(() => {
                 console.error('It was not possible to load ${this._lang}.json.');
