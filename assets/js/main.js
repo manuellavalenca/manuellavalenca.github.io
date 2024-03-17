@@ -4,114 +4,132 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-(function($) {
+import Translator from "./translator.js";
 
-	var $window = $(window),
-		$body = $('body'),
-		$header = $('#header'),
-		$footer = $('#footer'),
-		$main = $('#main'),
-		settings = {
+var translator = new Translator();
+translator.load();
 
-			// Parallax background effect?
-				parallax: true,
+function handleLanguageChoice(evt) {
+    var input = evt.target;
 
-			// Parallax factor (lower = more intense, higher = less intense).
-				parallaxFactor: 20
+    if (input.name === "lang") {
+      translator.load(input.id);
+	    console.log("Mudando o idioma para:");
+	    console.log(input.id);
+      localStorage.setItem("lang", input.id);
+    }
+  }
 
-		};
+  document.querySelector('[data-action="language-button"]').addEventListener("click", handleLanguageChoice);
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:  [ '1281px',  '1800px' ],
-			large:   [ '981px',   '1280px' ],
-			medium:  [ '737px',   '980px'  ],
-			small:   [ '481px',   '736px'  ],
-			xsmall:  [ null,      '480px'  ],
-		});
+// (function($) {
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+// 	var $window = $(window),
+// 		$body = $('body'),
+// 		$header = $('#header'),
+// 		$footer = $('#footer'),
+// 		$main = $('#main'),
+// 		settings = {
 
-	// Touch?
-		if (browser.mobile) {
+// 			// Parallax background effect?
+// 				parallax: true,
 
-			// Turn on touch mode.
-				$body.addClass('is-touch');
+// 			// Parallax factor (lower = more intense, higher = less intense).
+// 				parallaxFactor: 20
 
-			// Height fix (mostly for iOS).
-				window.setTimeout(function() {
-					$window.scrollTop($window.scrollTop() + 1);
-				}, 0);
+// 		};
 
-		}
+// 	// Breakpoints.
+// 		breakpoints({
+// 			xlarge:  [ '1281px',  '1800px' ],
+// 			large:   [ '981px',   '1280px' ],
+// 			medium:  [ '737px',   '980px'  ],
+// 			small:   [ '481px',   '736px'  ],
+// 			xsmall:  [ null,      '480px'  ],
+// 		});
 
-	// Footer.
-		breakpoints.on('<=medium', function() {
-			$footer.insertAfter($main);
-		});
+// 	// Play initial animations on page load.
+// 		$window.on('load', function() {
+// 			window.setTimeout(function() {
+// 				$body.removeClass('is-preload');
+// 			}, 100);
+// 		});
 
-		breakpoints.on('>medium', function() {
-			$footer.appendTo($header);
-		});
+// 	// Touch?
+// 		if (browser.mobile) {
 
-	// Header.
+// 			// Turn on touch mode.
+// 				$body.addClass('is-touch');
 
-		// Parallax background.
+// 			// Height fix (mostly for iOS).
+// 				window.setTimeout(function() {
+// 					$window.scrollTop($window.scrollTop() + 1);
+// 				}, 0);
 
-			// Disable parallax on IE (smooth scrolling is jerky), and on mobile platforms (= better performance).
-				if (browser.name == 'ie'
-				||	browser.mobile)
-					settings.parallax = false;
+// 		}
 
-			if (settings.parallax) {
+// 	// Footer.
+// 		breakpoints.on('<=medium', function() {
+// 			$footer.insertAfter($main);
+// 		});
 
-				breakpoints.on('<=medium', function() {
+// 		breakpoints.on('>medium', function() {
+// 			$footer.appendTo($header);
+// 		});
 
-					$window.off('scroll.strata_parallax');
-					$header.css('background-position', '');
+// 	// Header.
 
-				});
+// 		// Parallax background.
 
-				breakpoints.on('>medium', function() {
+// 			// Disable parallax on IE (smooth scrolling is jerky), and on mobile platforms (= better performance).
+// 				if (browser.name == 'ie'
+// 				||	browser.mobile)
+// 					settings.parallax = false;
 
-					$header.css('background-position', 'left 0px');
+// 			if (settings.parallax) {
 
-					$window.on('scroll.strata_parallax', function() {
-						$header.css('background-position', 'left ' + (-1 * (parseInt($window.scrollTop()) / settings.parallaxFactor)) + 'px');
-					});
+// 				breakpoints.on('<=medium', function() {
 
-				});
+// 					$window.off('scroll.strata_parallax');
+// 					$header.css('background-position', '');
 
-				$window.on('load', function() {
-					$window.triggerHandler('scroll');
-				});
+// 				});
 
-			}
+// 				breakpoints.on('>medium', function() {
 
-	// Main Sections: Two.
+// 					$header.css('background-position', 'left 0px');
 
-		// Lightbox gallery.
-			$window.on('load', function() {
+// 					$window.on('scroll.strata_parallax', function() {
+// 						$header.css('background-position', 'left ' + (-1 * (parseInt($window.scrollTop()) / settings.parallaxFactor)) + 'px');
+// 					});
 
-				$('#Apps_and_digital_experiences').poptrox({
-					caption: function($a) { return $a.next('h3').text(); },
-					overlayColor: '#2c2c2c',
-					overlayOpacity: 0.85,
-					popupCloserText: '',
-					popupLoaderText: '',
-					selector: '.work-item a.image',
-					usePopupCaption: true,
-					usePopupDefaultStyling: false,
-					usePopupEasyClose: false,
-					usePopupNav: true,
-					windowMargin: (breakpoints.active('<=small') ? 0 : 50)
-				});
+// 				});
 
-			});
+// 				$window.on('load', function() {
+// 					$window.triggerHandler('scroll');
+// 				});
 
-})(jQuery);
+// 			}
+
+// 	// Main Sections: Two.
+
+// 		// Lightbox gallery.
+// 			$window.on('load', function() {
+
+// 				$('#Apps_and_digital_experiences').poptrox({
+// 					caption: function($a) { return $a.next('h3').text(); },
+// 					overlayColor: '#2c2c2c',
+// 					overlayOpacity: 0.85,
+// 					popupCloserText: '',
+// 					popupLoaderText: '',
+// 					selector: '.work-item a.image',
+// 					usePopupCaption: true,
+// 					usePopupDefaultStyling: false,
+// 					usePopupEasyClose: false,
+// 					usePopupNav: true,
+// 					windowMargin: (breakpoints.active('<=small') ? 0 : 50)
+// 				});
+
+// 			});
+
+// })(jQuery);
