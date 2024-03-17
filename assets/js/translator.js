@@ -26,7 +26,8 @@ class Translator {
                 this.translate(translation);           
             })
             .catch(() => {
-                console.error('It was not possible to load ${this._lang}.json.');
+                this._lang = 'en';
+                this.translate(translation);
             })
     }
 
