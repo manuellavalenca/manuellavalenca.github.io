@@ -1,7 +1,10 @@
 "use strict";
 
 class Translator {
+
     constructor() { 
+        this._defaultLanguage = 'en'
+        this._availableLanguages = ['en','pt']
         this._lang = this.getLanguage()
         this._elements = document.querySelectorAll("[data-i18n]");
     }
@@ -9,12 +12,16 @@ class Translator {
     // Check the browser preferred language. In case of older navigators, there is no array, so we have to check that
     getLanguage() {
         var lang = navigator.languages ? navigator.languages[0] : navigator.language;
-        console.log("Browser language");
-        console.log(lang);
-        return lang.substr(0,2);
+        console.log("Browser language: ",lang);
+        
+        if (this._availableLanguages.includes(lang.substr(0,2))){
+            return lang.substr(0,2);
+        } else {
+            return this._defaultLanguage;
+        }
     }
 
-    // Class used if the user wants to change the language manually
+
     load (lang= null) {
         if (lang) {
             this._lang = lang;
@@ -26,8 +33,7 @@ class Translator {
                 this.translate(translation);           
             })
             .catch(() => {
-                this._lang = 'en';
-                this.translate(translation);
+                console.error('It was not possible to load ${this._lang}.json.');
             })
     }
 
