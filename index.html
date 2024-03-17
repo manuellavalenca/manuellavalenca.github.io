@@ -21,8 +21,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		
 		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/style.css" />
+		<link rel="stylesheet" href="./assets/css/main.css" type="text/css"/>
+		<link rel="stylesheet" href="./assets/css/style.css" type="text/css"/>
 	</head>
 
 	<body class="is-preload">
@@ -33,11 +33,11 @@
 					<a href="#header" class="image avatar"><img src="assets/images/Photo.svg" alt="Photo of Manu" /></a>
 					<h1 data-i18n="greeting"></h1>
 					<h1 data-i18n="introduction-message"></h1>
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/manuella-valenca/"><span class="label">Linkedin</span></a></li>
+						<li><a href="https://github.com/manuellavalenca"><span class="label">Github</span></a></li>
+					</ul>
 				</div>
-				<ul data-action="language-button">
-					<button class="button" name="lang" id= "pt">Português</button>
-					<button class="button" name="lang" id= "en">English</button>
-				</ul>
 			</header>
 
 		<!-- Main -->
@@ -176,14 +176,14 @@
 			</div>
 
 		<!-- Footer -->
-			<footer id="footer">
+			<footer id="footer" style="position:fixed; top:600px; text-align: right; width: 30%">
 				<div class="inner">
-					<ul class="icons">
-						<li><a href="https://www.linkedin.com/in/manuella-valenca/"><span class="label">Linkedin</span></a></li>
-						<li><a href="https://github.com/manuellavalenca"><span class="label">Github</span></a></li>
-					</ul>
 					<ul class="copyright">
 						<li>&copy; Untitled</li><li>Design: Derivative work from <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+					<ul data-action="language-button">
+						<button class="button" name="lang" id= "pt">Português</button>
+						<button class="button" name="lang" id= "en">English</button>
 					</ul>
 				</div>
 			</footer>
