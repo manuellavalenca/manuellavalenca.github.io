@@ -20,17 +20,38 @@ $('a[href*="#"]')
         $('html, body').animate({
           scrollTop: target.offset().top
         }, 1000, function() {
-        //   Callback after animation
-        //   Must change focus!
-        //   var $target = $(target);
-        //   $target.focus();
-        //   if ($target.is(":focus")) { // Checking if the target was focused
-        //     return false;
-        //   } else {
-        //     $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
-        //     $target.focus(); // Set focus again
-        //   };
+          // Callback after animation - Handle focus for accessibility
+          var $target = $(target);
+          
+          // Check if element is naturally focusable
+          var isFocusable = $target.is('a, button, input, textarea, select, [tabindex]');
+          
+          // Add temporary tabindex if not focusable
+          if (!isFocusable) {
+            $target.attr('tabindex', '-1');
+          }
+          
+          // Set focus
+          $target.focus();
+          
+          // Add aria-label for screen readers
+          $target.attr('aria-label', 'Seção ' + $target.attr('id'));
+          
+          // Remove temporary tabindex on blur to restore natural tab order
+          $target.one('blur', function() {
+            if (!isFocusable) {
+              $(this).removeAttr('tabindex');
+            }
+          });
         });
       }
     }
   });
+
+// Support keyboard navigation (Enter/Space on hash links)
+$(document).on('keydown', 'a[href*="#"]', function(e) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    $(this).click();
+  }
+});
