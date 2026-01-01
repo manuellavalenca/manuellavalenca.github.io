@@ -37,3 +37,83 @@
     color: #fff;
     top: 5px;
 }
+
+/* Footer Custom Styles */
+#footer {
+    position: relative;
+    text-align: right;
+    margin-top: 2em;
+}
+
+#footer .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5em;
+}
+
+#footer .copyright {
+    margin: 0;
+}
+
+#footer [data-action="language-button"] {
+    display: flex;
+    gap: 0.5em;
+    justify-content: flex-end;
+    margin: 0;
+}
+
+/* Media Queries for Footer */
+@media screen and (max-width: 980px) {
+    #footer .inner {
+        align-items: center;
+    }
+
+    #footer [data-action="language-button"] {
+        justify-content: center;
+    }
+
+    #header .icons {
+        justify-content: center;
+        margin-top: 1em;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    #footer .inner {
+        align-items: center;
+    }
+
+    #footer [data-action="language-button"] {
+        justify-content: center;
+    }
+
+    #header .icons {
+        justify-content: center;
+        margin-top: 1em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #footer .inner {
+        align-items: center;
+    }
+
+    #footer [data-action="language-button"] {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #footer [data-action="language-button"] button {
+        width: 100%;
+    }
+
+    #header .icons {
+        justify-content: center;
+        margin-top: 1em;
+    }
+
+    #header .icons li {
+        padding: 0 0.75em;
+    }
+}
